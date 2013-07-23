@@ -44,7 +44,7 @@
         android:id="@+id/answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Question"
+        android:layout_below="@+id/game_question"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp"
         android:clickable="false"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/answer"
         android:layout_marginTop="34dp"
-        android:layout_toRightOf="@+id/Question"
+        android:layout_toRightOf="@+id/game_question"
         android:background="@drawable/three" />
 
     <Button
@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/two"
         android:layout_alignBottom="@+id/two"
-        android:layout_toLeftOf="@+id/Question"
+        android:layout_toLeftOf="@+id/game_question"
         android:background="@drawable/one" />
 
     <Button
@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/five"
         android:layout_alignBottom="@+id/five"
-        android:layout_toLeftOf="@+id/Question"
+        android:layout_toLeftOf="@+id/game_question"
         android:background="@drawable/four" />
 
     <Button
@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/seven"
         android:layout_marginTop="18dp"
-        android:layout_toLeftOf="@+id/Question"
+        android:layout_toLeftOf="@+id/game_question"
         android:background="@drawable/del" />
 
     <Button
@@ -113,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/del"
         android:layout_alignBottom="@+id/del"
-        android:layout_toRightOf="@+id/Question"
+        android:layout_toRightOf="@+id/game_question"
         android:background="@drawable/enter" />
 
     <Button
@@ -126,7 +126,7 @@
         android:background="@drawable/zero" />
 
     <TextView
-        android:id="@+id/Question"
+        android:id="@+id/game_question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

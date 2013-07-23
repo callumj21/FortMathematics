@@ -74,7 +74,6 @@ public final class R {
         public static final int zero_non_click=0x7f020032;
     }
     public static final class id {
-        public static final int Question=0x7f080013;
         public static final int TextView01=0x7f080007;
         public static final int TextView02=0x7f080009;
         public static final int about=0x7f080002;
@@ -86,6 +85,7 @@ public final class R {
         public static final int entry=0x7f080003;
         public static final int five=0x7f08000c;
         public static final int four=0x7f080011;
+        public static final int game_question=0x7f080013;
         public static final int hot_list=0x7f080004;
         public static final int imageView1=0x7f080000;
         public static final int info=0x7f08001f;

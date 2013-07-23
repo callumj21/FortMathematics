@@ -30,7 +30,7 @@ public class Addition extends ListActivity {
 		// first time in this activity add the pre made hotels
 		if (flag == 0 && GameDbHelper.gameTableCreation == 1) {
 			flag = 1;
-			dbHelper.createAdd("Set 1","Easy", "10 + 27, 15 + 13, 28 + 23","37, 28, 51");
+			dbHelper.createAdd("Set 1","Easy", "10 + 27, 15 + 13, 28 + 23","37,28,51");
 
 		}
 
@@ -58,7 +58,7 @@ public class Addition extends ListActivity {
 			i.putExtra(GameDbAdapter.KEY_A_ROWID, id);
 			// Activity returns an result if called with startActivityForResult
 
-
+			startActivity(i);
 
 				finish();
 	}

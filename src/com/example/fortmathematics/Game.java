@@ -1,11 +1,16 @@
 package com.example.fortmathematics;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Game extends Activity {
@@ -23,13 +28,27 @@ public class Game extends Activity {
 	private Button zero;
 	private Button del;
 	private Button enter;
+	private GameDbAdapter mDbHelper;
+	private Long mRowId;
+	private TextView question;
+	private ArrayList<String> questionsList = new ArrayList<String>();
+	private ArrayList<String> answersList = new ArrayList<String>();
+	private static int current = 0;
+
+	
+	
 
 	String answer = "";
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void onCreate(Bundle bundle) {
+		super.onCreate(bundle);
+		mDbHelper = new GameDbAdapter(this);
+		mDbHelper.open();
+		
 		setContentView(R.layout.game_screen);
+		question = (TextView) findViewById(R.id.game_question);
+
 		answerBox = (EditText) findViewById(R.id.answer);
 		answerBox.setKeyListener(null);
 		answerBox.setFocusable(false);
@@ -163,8 +182,52 @@ public class Game extends Activity {
 
 		});
 		
+		mRowId = null;
+		Bundle extras = getIntent().getExtras();
+		mRowId = (bundle == null) ? null : (Long) bundle
+				.getSerializable(GameDbAdapter.KEY_A_ROWID);
+		if (extras != null) {
+			mRowId = extras.getLong(GameDbAdapter.KEY_A_ROWID);
+		}
+
+		prepareAdditionGame();
+		
 		
 
+	}
+
+	@SuppressWarnings("deprecation")
+	private void prepareAdditionGame() {
+		if (mRowId != null) {
+			Cursor add = mDbHelper.fetchAddition(mRowId);
+			startManagingCursor(add);
+			
+			String questions = add.getString(add
+					.getColumnIndexOrThrow(GameDbAdapter.KEY_A_QUESTIONS));
+			String answers = add.getString(add
+					.getColumnIndexOrThrow(GameDbAdapter.KEY_A_ANSWERS));
+			Log.d("hello",questions);
+			String questionsArray[] = questions.split(",");
+			
+			for(int i = 0; i < questionsArray.length;i++){
+				System.out.println(questionsArray[i]);
+				questionsList.add(questionsArray[i]);
+			}
+			
+			question.setText(questionsList.get(0));
+			
+			String answersArray[] = answers.split(",");
+			
+			for(int i = 0; i < answersArray.length;i++){
+				System.out.println(answersArray[i]);
+				answersList.add(answersArray[i]);
+			}
+			
+			
+		
+			
+		}
+		
 	}
 
 	private void zeroFunction() {
@@ -236,7 +299,14 @@ public class Game extends Activity {
 	}
 
 	private void enterFunction() {
-
+		System.out.println(answersList.get(current));
+		if(answer.equals(answersList.get(current))){
+			current = current + 1;
+			System.out.println(current);
+			question.setText(questionsList.get(current));
+			answer = "";
+			answerBox.setText(answer);
+		}
 		Toast toast = Toast.makeText(getApplicationContext(), "You have entered: " + answer,
 				Toast.LENGTH_SHORT);
 		toast.show();
