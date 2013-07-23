@@ -8,4 +8,45 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".FortMaths" >
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/math_challenge" />
+
+       <Button
+           android:id="@+id/score"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_below="@+id/imageView1"
+           android:layout_marginTop="84dp"
+           android:background="@drawable/score" />
+
+       <Button
+           android:id="@+id/settings"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/score"
+           android:layout_toLeftOf="@+id/score"
+           android:background="@drawable/settings" />
+
+       <Button
+           android:id="@+id/about"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/settings"
+           android:layout_toRightOf="@+id/settings"
+           android:background="@drawable/about" />
+
+       <Button
+           android:id="@+id/entry"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerVertical="true"
+           android:layout_toLeftOf="@+id/score"
+           android:background="@drawable/entry" />
+
 </RelativeLayout>
