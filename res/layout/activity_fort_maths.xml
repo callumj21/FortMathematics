@@ -26,19 +26,11 @@
            android:background="@drawable/score" />
 
        <Button
-           android:id="@+id/settings"
+           android:id="@+id/about"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_below="@+id/score"
            android:layout_toLeftOf="@+id/score"
-           android:background="@drawable/settings" />
-
-       <Button
-           android:id="@+id/about"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_below="@+id/settings"
-           android:layout_toRightOf="@+id/settings"
            android:background="@drawable/about" />
 
        <Button
