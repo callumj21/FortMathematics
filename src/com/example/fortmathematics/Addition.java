@@ -15,7 +15,6 @@ public class Addition extends ListActivity {
 	private Cursor cursor;
 	public static int flag = 0;
 	private String game_tag = "Game";
-	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -30,20 +29,23 @@ public class Addition extends ListActivity {
 		// first time in this activity add the pre made hotels
 		if (flag == 0 && GameDbHelper.gameTableCreation == 1) {
 			flag = 1;
-			dbHelper.createAdd("Set 1","Easy", "10 + 27, 15 + 13, 28 + 23","37,28,51");
+			dbHelper.createAdd(
+					"Set 1",
+					"Easy",
+					" 10 + 27, 15 + 13, 28 + 23, 21 + 33, 44 + 22,8 + 29, 16+18 , 103 + 17, 115 + 26, 46 + 33",
+					"37,28,51,44,66,37,34,120,141,79");
+			dbHelper.createAdd(
+					"Set 2",
+					"Easy",
+					" 34 + 21, 66 + 22, 15 + 23 , (8 + 2) + 29 , (6 + 3) + 22 , 16 + 60 , 57 + 13 , 72 + 29, 14 + 43 , (19 + 2) + 20",
+					"55,88,38,39,31,76,70,99,47,49");
 
 		}
 
-		
-		
 		fillData();
 
 		registerForContextMenu(getListView());
 	}
-
-
-
-
 
 	// Prepares to go to Hotel Details in order for an update to take place
 	@SuppressWarnings("deprecation")
@@ -51,16 +53,16 @@ public class Addition extends ListActivity {
 		super.onListItemClick(l, v, position, id);
 		Cursor hotel = dbHelper.fetchAddition(id);
 		startManagingCursor(hotel);
-		
-			Intent i = new Intent(this, Game.class);
-			// Put any details in with the intent if they exist already applies
-			// to an updation
-			i.putExtra(GameDbAdapter.KEY_A_ROWID, id);
-			// Activity returns an result if called with startActivityForResult
 
-			startActivity(i);
+		Intent i = new Intent(this, Game.class);
+		// Put any details in with the intent if they exist already applies
+		// to an updation
+		i.putExtra(GameDbAdapter.KEY_A_ROWID, id);
+		// Activity returns an result if called with startActivityForResult
 
-				finish();
+		startActivity(i);
+
+		finish();
 	}
 
 	// Called with the result of the other activity
@@ -96,7 +98,6 @@ public class Addition extends ListActivity {
 		Log.d(game_tag, "Displayed Adds");
 	}
 
-	
 	// Called when activity finishes in order to close the database adapter
 	@Override
 	protected void onDestroy() {
@@ -113,7 +114,7 @@ public class Addition extends ListActivity {
 	@Override
 	public void onResume() {
 		super.onResume();
-		
+
 	}
 
 }

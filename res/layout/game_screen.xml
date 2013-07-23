@@ -159,16 +159,6 @@
         android:text="0" />
 
     <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView3"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_alignRight="@+id/three"
-        android:text="0"
-        android:textColor="#0000FF" />
-
-    <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -177,6 +167,17 @@
         android:layout_alignRight="@+id/answer"
         android:layout_marginRight="34dp"
         android:text="Time Left :"
+        android:textColor="#0000FF" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/three"
+        android:text="0"
         android:textColor="#0000FF" />
 
 </RelativeLayout>
