@@ -202,7 +202,7 @@ public class Game extends Activity {
 			mRowId = extras.getLong(GameDbAdapter.KEY_A_ROWID);
 		}
 
-		prepareAdditionGame();
+		prepareGame();
 
 		// Declare the timer
 		startTime = SystemClock.uptimeMillis();
@@ -228,18 +228,34 @@ public class Game extends Activity {
 	};
 
 	@SuppressWarnings("deprecation")
-	private void prepareAdditionGame() {
+	private void prepareGame() {
 		answersList = new ArrayList<String>();
 		questionsList = new ArrayList<String>();
+		correct  = new ArrayList<String>();
+		String questions = "";
+		String answers = "";
 		timeList = new ArrayList<Float>();
 		if (mRowId != null) {
-			Cursor add = mDbHelper.fetchAddition(mRowId);
-			startManagingCursor(add);
+			Cursor gameCursor = null;
+			if (GameSelection.getSelection().equals("Addition")) {
+				gameCursor = mDbHelper.fetchAddition(mRowId);
+				startManagingCursor(gameCursor);
 
-			String questions = add.getString(add
-					.getColumnIndexOrThrow(GameDbAdapter.KEY_A_QUESTIONS));
-			String answers = add.getString(add
-					.getColumnIndexOrThrow(GameDbAdapter.KEY_A_ANSWERS));
+				questions = gameCursor.getString(gameCursor
+						.getColumnIndexOrThrow(GameDbAdapter.KEY_A_QUESTIONS));
+				answers = gameCursor.getString(gameCursor
+						.getColumnIndexOrThrow(GameDbAdapter.KEY_A_ANSWERS));
+			} else if (GameSelection.getSelection().equals("Subtraction")) {
+				gameCursor = mDbHelper.fetchSubtraction(mRowId);
+				startManagingCursor(gameCursor);
+
+				questions = gameCursor.getString(gameCursor
+						.getColumnIndexOrThrow(GameDbAdapter.KEY_S_QUESTIONS));
+				answers = gameCursor.getString(gameCursor
+						.getColumnIndexOrThrow(GameDbAdapter.KEY_S_ANSWERS));
+
+			}
+
 			Log.d("hello", questions);
 			String questionsArray[] = questions.split(",");
 
@@ -341,7 +357,7 @@ public class Game extends Activity {
 
 		}
 		if (current == 0) {
-			questionTime =  (timeInMilliseconds - questionFinish) / 1000L;
+			questionTime = (timeInMilliseconds - questionFinish) / 1000L;
 			questionFinish = (float) timeInMilliseconds;
 			timeList.add(questionTime);
 
@@ -361,7 +377,7 @@ public class Game extends Activity {
 
 		if (current == questionsList.size()) {
 			finishGame(actualAnswer, userAnswer);
-			
+
 		} else {
 			question.setText(questionsList.get(current));
 			answer = "";
@@ -413,9 +429,9 @@ public class Game extends Activity {
 	public static ArrayList<Float> getTimes() {
 		return timeList;
 	}
-	
-	public static void resetCurrent(){
+
+	public static void resetCurrent() {
 		current = 0;
-		
+
 	}
 }

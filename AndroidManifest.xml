@@ -24,8 +24,9 @@
         </activity>
         <activity android:name="Game"></activity>
         <activity android:name="GameSelection"></activity>
-        <activity android:name="Addition"></activity>
+        <activity android:name="ShowSets"></activity>
         <activity android:name="GameSummary"></activity>
+        <activity android:name="ScoreSelectionMenu"></activity>
     </application>
 
 </manifest>

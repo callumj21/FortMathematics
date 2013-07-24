@@ -18,7 +18,8 @@ import android.widget.Button;
 public class FortMaths extends Activity {
 
 	private Button enterFort;
-	
+	private Button scores;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,9 +37,16 @@ public class FortMaths extends Activity {
 
 		});
 
-	
-	}
+		scores = (Button) findViewById(R.id.score);
+		scores.setOnClickListener(new OnClickListener() {
 
-	
+			@Override
+			public void onClick(View arg0) {
+				Intent i = new Intent(FortMaths.this, ScoreSelectionMenu.class);
+				startActivity(i);
+			}
+
+		});
+	}
 
 }

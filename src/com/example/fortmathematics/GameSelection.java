@@ -73,18 +73,14 @@ public class GameSelection extends ListActivity {
 		// Checks what item was clicked then sets the phone number corresponding
 		// to that list item
 		if (position == 0) {
-			Intent i = new Intent(GameSelection.this,Addition.class);
-			startActivity(i);
+			
 			gameSelection = "Addition";
 
-//		} else if (position == 1) {
-//			phone = "tel:+441312281211";
-//			Log.d(PHONE_TAG, "Phone number is set too " + phone);
-//			registerForContextMenu(getListView());
-//			v.showContextMenu();
-//			unregisterForContextMenu(getListView());
-//
-//		} else if (position == 2) {
+		} else if (position == 1) {
+			gameSelection = "Subtraction";
+
+		}
+		//else if (position == 2) {
 //			phone = "tel:+441314774000";
 //			Log.d(PHONE_TAG, "Phone number is set too " + phone);
 //			registerForContextMenu(getListView());
@@ -104,8 +100,10 @@ public class GameSelection extends ListActivity {
 //			registerForContextMenu(getListView());
 //			v.showContextMenu();
 //			unregisterForContextMenu(getListView());
+		Intent i = new Intent(GameSelection.this,ShowSets.class);
+		startActivity(i);
 		}
-	}
+	
 	
 	public static String getSelection(){
 		return gameSelection;
