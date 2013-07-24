@@ -36,6 +36,7 @@ public class Game extends Activity {
 
 	private static ArrayList<String> questionsList = new ArrayList<String>();
 	private ArrayList<String> answersList = new ArrayList<String>();
+	private String usersAnswers = "";
 	private static ArrayList<String> correct = new ArrayList<String>();
 	private static ArrayList<Float> timeList = new ArrayList<Float>();
 
@@ -228,6 +229,9 @@ public class Game extends Activity {
 
 	@SuppressWarnings("deprecation")
 	private void prepareAdditionGame() {
+		answersList = new ArrayList<String>();
+		questionsList = new ArrayList<String>();
+		timeList = new ArrayList<Float>();
 		if (mRowId != null) {
 			Cursor add = mDbHelper.fetchAddition(mRowId);
 			startManagingCursor(add);
@@ -337,14 +341,14 @@ public class Game extends Activity {
 
 		}
 		if (current == 0) {
-			questionTime = (float) (timeInMilliseconds / 1000);
-			questionFinish = (float) timeInMilliseconds ;
+			questionTime =  (timeInMilliseconds - questionFinish) / 1000L;
+			questionFinish = (float) timeInMilliseconds;
 			timeList.add(questionTime);
 
 			questionTime = questionTime * 1000;
 
 		} else {
-			
+
 			questionTime = (timeInMilliseconds - questionFinish) / 1000L;
 			questionFinish = (float) timeInMilliseconds;
 			timeList.add(questionTime);
@@ -354,20 +358,9 @@ public class Game extends Activity {
 		}
 
 		current = current + 1;
-		
-		
-		if (current == questionsList.size()) {
-			enter.setClickable(false);
-			if (actualAnswer == userAnswer) {
-				correct.add("Correct");
 
-				addscore();
-			} else {
-				correct.add("Wrong");
-			}
-			Intent i = new Intent(Game.this, GameSummary.class);
-			startActivity(i);
-			finish();
+		if (current == questionsList.size()) {
+			finishGame(actualAnswer, userAnswer);
 			
 		} else {
 			question.setText(questionsList.get(current));
@@ -380,11 +373,26 @@ public class Game extends Activity {
 			} else {
 				correct.add("Wrong");
 			}
-		}
 
-		// Toast toast = Toast.makeText(getApplicationContext(),
-		// "You have entered: " + answer, Toast.LENGTH_SHORT);
-		// toast.show();
+			// Toast toast = Toast.makeText(getApplicationContext(),
+			// "You have entered: " + answer, Toast.LENGTH_SHORT);
+			// toast.show();
+
+		}
+	}
+
+	private void finishGame(int actualAnswer, int userAnswer) {
+		enter.setClickable(false);
+		if (actualAnswer == userAnswer) {
+			correct.add("Correct");
+
+			addscore();
+		} else {
+			correct.add("Wrong");
+		}
+		Intent i = new Intent(Game.this, GameSummary.class);
+		startActivity(i);
+		finish();
 
 	}
 
@@ -393,16 +401,21 @@ public class Game extends Activity {
 		scoreText.setText(Integer.toString(score));
 
 	}
-	
-	public static ArrayList<String> getQuestions(){
+
+	public static ArrayList<String> getQuestions() {
 		return questionsList;
 	}
-	
-	public static ArrayList<String> getResults(){
+
+	public static ArrayList<String> getResults() {
 		return correct;
 	}
-	
-	public static ArrayList<Float> getTimes(){
+
+	public static ArrayList<Float> getTimes() {
 		return timeList;
+	}
+	
+	public static void resetCurrent(){
+		current = 0;
+		
 	}
 }

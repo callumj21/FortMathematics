@@ -135,7 +135,7 @@ public class Addition extends ListActivity {
 
 		startActivity(i);
 
-		finish();
+		finish();  
 	}
 
 	// Called with the result of the other activity
