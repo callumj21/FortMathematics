@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<add>
+
+    <set>Set one</set>
+
+    <description>Easy</description>
+
+    <questions>
+        10 + 27, 15 + 13, 28 + 23, 21 + 33, 44 + 22, 8 + 29, 16 + 18 , 103 + 17, 115 + 26, 46 + 33</questions>
+
+    <answers>37,28,51,44,66,37,34,120,141,79</answers>
+
+    <set>Set two</set>
+
+    <description>Easy</description>
+
+    <questions>34 + 21, 66 + 22, 15 + 23 , (8 + 2) + 29 , (6 + 3) + 22 , 16 + 60 , 57 + 13 , 72 + 29, 14 + 43 , (19 + 2) + 20</questions>
+
+    <answers>55,88,38,39,31,76,70,99,57,41</answers>
+
+</add>

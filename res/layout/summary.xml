@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="527dp"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="36dp"
+        android:layout_toRightOf="@+id/message"
+        android:text="Summary"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/message"
+        android:layout_marginTop="58dp"
+        android:text="Question" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_marginRight="14dp"
+        android:text="Time taken" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="35dp"
+        android:text="Result" />
+
+    <TextView
+        android:id="@+id/quest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="40dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/question_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/question_times"
+        android:layout_alignBottom="@+id/question_times"
+        android:layout_alignLeft="@+id/textView4"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/question_times"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/quest"
+        android:layout_alignBottom="@+id/quest"
+        android:layout_alignLeft="@+id/textView3"
+        android:text="TextView" />
+
+</RelativeLayout>
+</ScrollView>

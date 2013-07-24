@@ -3,15 +3,17 @@ package com.example.fortmathematics;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Game extends Activity {
 
@@ -31,12 +33,22 @@ public class Game extends Activity {
 	private GameDbAdapter mDbHelper;
 	private Long mRowId;
 	private TextView question;
-	private ArrayList<String> questionsList = new ArrayList<String>();
-	private ArrayList<String> answersList = new ArrayList<String>();
-	private static int current = 0;
 
-	
-	
+	private static ArrayList<String> questionsList = new ArrayList<String>();
+	private ArrayList<String> answersList = new ArrayList<String>();
+	private static ArrayList<String> correct = new ArrayList<String>();
+	private static ArrayList<Float> timeList = new ArrayList<Float>();
+
+	private static int current = 0;
+	private Handler customHandler = new Handler();
+	long timeInMilliseconds = 0L;
+	long updatedTime = 0L;
+	private TextView timer;
+	private TextView scoreText;
+	private long startTime = 0L;
+	private int score = 0;
+	private float questionTime = 0;
+	private float questionFinish = 0;
 
 	String answer = "";
 
@@ -45,9 +57,11 @@ public class Game extends Activity {
 		super.onCreate(bundle);
 		mDbHelper = new GameDbAdapter(this);
 		mDbHelper.open();
-		
+
 		setContentView(R.layout.game_screen);
 		question = (TextView) findViewById(R.id.game_question);
+		timer = (TextView) findViewById(R.id.time);
+		scoreText = (TextView) findViewById(R.id.points);
 
 		answerBox = (EditText) findViewById(R.id.answer);
 		answerBox.setKeyListener(null);
@@ -84,8 +98,7 @@ public class Game extends Activity {
 			}
 
 		});
-		
-		
+
 		three = (Button) findViewById(R.id.three);
 		three.setOnClickListener(new OnClickListener() {
 
@@ -106,7 +119,7 @@ public class Game extends Activity {
 			}
 
 		});
-		
+
 		five = (Button) findViewById(R.id.five);
 		five.setOnClickListener(new OnClickListener() {
 
@@ -127,7 +140,7 @@ public class Game extends Activity {
 			}
 
 		});
-		
+
 		seven = (Button) findViewById(R.id.seven);
 		seven.setOnClickListener(new OnClickListener() {
 
@@ -148,7 +161,7 @@ public class Game extends Activity {
 			}
 
 		});
-		
+
 		nine = (Button) findViewById(R.id.nine);
 		nine.setOnClickListener(new OnClickListener() {
 
@@ -160,8 +173,6 @@ public class Game extends Activity {
 
 		});
 
-		
-		
 		del = (Button) findViewById(R.id.del);
 		del.setOnClickListener(new OnClickListener() {
 
@@ -171,7 +182,7 @@ public class Game extends Activity {
 			}
 
 		});
-		
+
 		enter = (Button) findViewById(R.id.enter);
 		enter.setOnClickListener(new OnClickListener() {
 
@@ -181,7 +192,7 @@ public class Game extends Activity {
 			}
 
 		});
-		
+
 		mRowId = null;
 		Bundle extras = getIntent().getExtras();
 		mRowId = (bundle == null) ? null : (Long) bundle
@@ -191,43 +202,59 @@ public class Game extends Activity {
 		}
 
 		prepareAdditionGame();
-		
-		
+
+		// Declare the timer
+		startTime = SystemClock.uptimeMillis();
+		customHandler.postDelayed(updateTimerThread, 0);
 
 	}
+
+	private Runnable updateTimerThread = new Runnable() {
+
+		public void run() {
+			timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
+			updatedTime = timeInMilliseconds;
+			int secs = (int) (updatedTime / 1000);
+			int mins = secs / 60;
+			secs = secs % 60;
+			int milliseconds = (int) (updatedTime % 1000);
+			timer.setText("" + mins + ":" + String.format("%02d", secs) + ":"
+					+ String.format("%03d", milliseconds));
+			customHandler.postDelayed(this, 0);
+
+		}
+
+	};
 
 	@SuppressWarnings("deprecation")
 	private void prepareAdditionGame() {
 		if (mRowId != null) {
 			Cursor add = mDbHelper.fetchAddition(mRowId);
 			startManagingCursor(add);
-			
+
 			String questions = add.getString(add
 					.getColumnIndexOrThrow(GameDbAdapter.KEY_A_QUESTIONS));
 			String answers = add.getString(add
 					.getColumnIndexOrThrow(GameDbAdapter.KEY_A_ANSWERS));
-			Log.d("hello",questions);
+			Log.d("hello", questions);
 			String questionsArray[] = questions.split(",");
-			
-			for(int i = 0; i < questionsArray.length;i++){
+
+			for (int i = 0; i < questionsArray.length; i++) {
 				System.out.println(questionsArray[i]);
 				questionsList.add(questionsArray[i]);
 			}
-			
+
 			question.setText(questionsList.get(0));
-			
+
 			String answersArray[] = answers.split(",");
-			
-			for(int i = 0; i < answersArray.length;i++){
+
+			for (int i = 0; i < answersArray.length; i++) {
 				System.out.println(answersArray[i]);
 				answersList.add(answersArray[i]);
 			}
-			
-			
-		
-			
+
 		}
-		
+
 	}
 
 	private void zeroFunction() {
@@ -299,17 +326,83 @@ public class Game extends Activity {
 	}
 
 	private void enterFunction() {
-		System.out.println(answersList.get(current));
-		if(answer.equals(answersList.get(current))){
-			current = current + 1;
-			System.out.println(current);
+		int actualAnswer;
+		int userAnswer;
+		if (answer == "") {
+			actualAnswer = Integer.parseInt(answersList.get(current));
+			userAnswer = -1;
+		} else {
+			actualAnswer = Integer.parseInt(answersList.get(current));
+			userAnswer = Integer.parseInt(answer);
+
+		}
+		if (current == 0) {
+			questionTime = (float) (timeInMilliseconds / 1000);
+			questionFinish = (float) timeInMilliseconds ;
+			timeList.add(questionTime);
+
+			questionTime = questionTime * 1000;
+
+		} else {
+			
+			questionTime = (timeInMilliseconds - questionFinish) / 1000L;
+			questionFinish = (float) timeInMilliseconds;
+			timeList.add(questionTime);
+
+			questionTime = questionTime * 1000;
+
+		}
+
+		current = current + 1;
+		
+		
+		if (current == questionsList.size()) {
+			enter.setClickable(false);
+			if (actualAnswer == userAnswer) {
+				correct.add("Correct");
+
+				addscore();
+			} else {
+				correct.add("Wrong");
+			}
+			Intent i = new Intent(Game.this, GameSummary.class);
+			startActivity(i);
+			finish();
+			
+		} else {
 			question.setText(questionsList.get(current));
 			answer = "";
 			answerBox.setText(answer);
-		}
-		Toast toast = Toast.makeText(getApplicationContext(), "You have entered: " + answer,
-				Toast.LENGTH_SHORT);
-		toast.show();
+			if (actualAnswer == userAnswer) {
+				correct.add("Correct");
 
+				addscore();
+			} else {
+				correct.add("Wrong");
+			}
+		}
+
+		// Toast toast = Toast.makeText(getApplicationContext(),
+		// "You have entered: " + answer, Toast.LENGTH_SHORT);
+		// toast.show();
+
+	}
+
+	private void addscore() {
+		score = score + 1;
+		scoreText.setText(Integer.toString(score));
+
+	}
+	
+	public static ArrayList<String> getQuestions(){
+		return questionsList;
+	}
+	
+	public static ArrayList<String> getResults(){
+		return correct;
+	}
+	
+	public static ArrayList<Float> getTimes(){
+		return timeList;
 	}
 }

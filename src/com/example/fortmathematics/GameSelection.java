@@ -15,6 +15,7 @@ public class GameSelection extends ListActivity {
 	private static String phone = null;
 	private static int phoneListExists = 0;
 	Context context = GameSelection.this;
+	private static String gameSelection;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,6 +75,7 @@ public class GameSelection extends ListActivity {
 		if (position == 0) {
 			Intent i = new Intent(GameSelection.this,Addition.class);
 			startActivity(i);
+			gameSelection = "Addition";
 
 //		} else if (position == 1) {
 //			phone = "tel:+441312281211";
@@ -103,6 +105,10 @@ public class GameSelection extends ListActivity {
 //			v.showContextMenu();
 //			unregisterForContextMenu(getListView());
 		}
+	}
+	
+	public static String getSelection(){
+		return gameSelection;
 	}
 
 }
