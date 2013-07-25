@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class GameDbHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "applicationdata";
-	private static final int DATABASE_VERSION = 35;
+	private static final int DATABASE_VERSION = 40;
 	public static int addTableCreation = 0;
 	public static int subTableCreation = 0;
 

@@ -13,7 +13,7 @@ import android.widget.SimpleAdapter;
 
 public class GameSelection extends ListActivity {
 	private static String phone = null;
-	private static int phoneListExists = 0;
+	private static int gameListExists = 0;
 	Context context = GameSelection.this;
 	private static String gameSelection;
 
@@ -37,10 +37,11 @@ public class GameSelection extends ListActivity {
 	private void populateList() {
 		// Goes into if statement if Phone activity has been activated earlier
 		// on in the run of the app
-		if (phoneListExists == 1) {
+		if (gameListExists == 1) {
 			// Clears the list of phone numbers
 			list.clear();
 		}
+		gameListExists = 1;
 		HashMap<String, String> temp = new HashMap<String, String>();
 		temp.put("gameMode", "Addition");
 		temp.put("description", "In this game mode you will have to answer addition questions from a chosen set");
@@ -75,9 +76,15 @@ public class GameSelection extends ListActivity {
 		if (position == 0) {
 			
 			gameSelection = "Addition";
+			Intent i = new Intent(GameSelection.this,ShowSets.class);
+			startActivity(i);
+			finish();
 
 		} else if (position == 1) {
 			gameSelection = "Subtraction";
+			Intent i = new Intent(GameSelection.this,ShowSets.class);
+			startActivity(i);
+			finish();
 
 		}
 		//else if (position == 2) {
@@ -100,13 +107,19 @@ public class GameSelection extends ListActivity {
 //			registerForContextMenu(getListView());
 //			v.showContextMenu();
 //			unregisterForContextMenu(getListView());
-		Intent i = new Intent(GameSelection.this,ShowSets.class);
-		startActivity(i);
+		
 		}
 	
 	
 	public static String getSelection(){
 		return gameSelection;
+	}
+	
+	@Override
+	public void onBackPressed(){
+		Intent i = new Intent(GameSelection.this,FortMaths.class);
+		startActivity(i);
+		finish();
 	}
 
 }

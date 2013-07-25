@@ -4,5 +4,10 @@
     <string name="app_name">FortMathematics</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    
+    <string-array name="pause_array">
+		<item>Resume Game</item>
+		<item>Return to menu</item>
+	</string-array>
 
 </resources>

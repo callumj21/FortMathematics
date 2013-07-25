@@ -6,7 +6,7 @@
 
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="527dp"
+    android:layout_height="560dp"
     android:orientation="vertical" >
 
     <TextView
@@ -16,17 +16,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="60dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="36dp"
-        android:layout_toRightOf="@+id/message"
-        android:text="Summary"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="aaaaaaaaaaaaaaaaaaaaaa" />
 
     <TextView
         android:id="@+id/textView2"
@@ -110,6 +100,16 @@
         android:layout_alignBottom="@+id/name_entry"
         android:layout_toRightOf="@+id/question_times"
         android:text="Save and return to menu" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@+id/quest"
+        android:text="Summary"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
 </ScrollView>
