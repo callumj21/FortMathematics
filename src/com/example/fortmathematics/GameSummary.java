@@ -74,7 +74,7 @@ public class GameSummary extends Activity {
 				+ "/"
 				+ qList.size()
 				+ " correct. Your game lasted "
-				+ String.format("%.3f",totalTime)
+				+ Game.getTotalTime()
 				+ ". For more information visit the score section of the app and find your score. Scroll down to " +
 				"enter your name");
 

@@ -1,16 +1,9 @@
 package com.example.fortmathematics;
 
-import java.io.IOException;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-
 import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.content.res.XmlResourceParser;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,8 +12,12 @@ import android.widget.SimpleCursorAdapter;
 
 public class ShowSets extends ListActivity {
 	private GameDbAdapter dbHelper;
+	private GameDbHelper help;
+
 	private String game_tag = "Game";
 	private Cursor cursor;
+	private SQLiteDatabase db;
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -82,7 +79,11 @@ public class ShowSets extends ListActivity {
 	// Deals with putting the required information in the list
 	@SuppressWarnings("deprecation")
 	private void fillDataAdd() {
-
+//		help = new GameDbHelper(ShowSets.this);
+//
+//		db = help.getWritableDatabase();
+//
+//		cursor = db.rawQuery("SELECT * FROM addition WHERE a_set = 'Set one'", null);
 		cursor = dbHelper.fetchAllAdds();
 		startManagingCursor(cursor);
 
@@ -139,5 +140,7 @@ public class ShowSets extends ListActivity {
 		super.onResume();
 
 	}
+	
+	
 
 }

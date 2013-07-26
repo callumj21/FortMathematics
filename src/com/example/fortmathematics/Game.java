@@ -42,24 +42,28 @@ public class Game extends Activity {
 
 	private static ArrayList<String> questionsList = new ArrayList<String>();
 	private ArrayList<String> answersList = new ArrayList<String>();
-	private String usersAnswers = "";
 	private static ArrayList<String> correct = new ArrayList<String>();
 	private static ArrayList<Float> timeList = new ArrayList<Float>();
 
 	private static int current = 0;
 	private Handler customHandler = new Handler();
-	long timeInMilliseconds = 0L;
-	long updatedTime = 0L;
+	
 	private TextView timer;
 	private TextView scoreText;
+	
+	private long timeInMilliseconds = 0L;
+	private long updatedTime = 0L;
 	private long startTime = 0L;
-	private long timeSwapBuff = 0L;
-
+	private long timeSwapBuff = 0L;	
 	private int score = 0;
+	
 	private float questionTime = 0;
 	private float questionFinish = 0;
 
-	String answer = "";
+	private String answer = "";
+	private static String finalTime = "";
+	private String usersAnswers = "";
+
 
 	@Override
 	protected void onCreate(Bundle bundle) {
@@ -407,6 +411,7 @@ public class Game extends Activity {
 			System.out.println("Time was: " + questionTime + " , was finished at: " + questionFinish);
 			timeList.add(questionTime);
 
+
 			questionTime = questionTime * 1000;
 
 
@@ -437,6 +442,16 @@ public class Game extends Activity {
 
 	private void finishGame(float actualAnswer, float userAnswer) {
 		enter.setClickable(false);
+		customHandler.removeCallbacks(updateTimerThread);
+		updatedTime = timeSwapBuff + timeInMilliseconds;
+		int secs = (int) (updatedTime / 1000);
+		int mins = secs / 60;
+		secs = secs % 60;
+		int milliseconds = (int) (updatedTime % 1000);
+		finalTime = ("" + mins + ":" + String.format("%02d", secs) + ":"
+				+ String.format("%03d", milliseconds));
+
+
 		if (actualAnswer == userAnswer) {
 			correct.add("Correct");
 
@@ -450,10 +465,16 @@ public class Game extends Activity {
 
 	}
 
+	
 	private void addscore() {
 		score = score + 1;
 		scoreText.setText(Integer.toString(score));
 
+	}
+	
+	public static String getTotalTime(){
+		return finalTime;
+		
 	}
 
 	public static ArrayList<String> getQuestions() {
