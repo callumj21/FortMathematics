@@ -2,7 +2,9 @@ package com.example.fortmathematics;
 
 import android.app.Activity;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -15,6 +17,10 @@ public class ScoreSelectionMenu extends Activity {
 	private Spinner spinner2;
 	private GameDbAdapter dbHelper;
 	private Cursor cursor;
+	private GameDbHelper help;
+	private SQLiteDatabase db;
+	
+	private String hello;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +45,11 @@ public class ScoreSelectionMenu extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				String hello = spinner1.getSelectedItem().toString();
+				 hello = spinner1.getSelectedItem().toString();
 				if (hello.equals("Addition")) {
-					additionSpinner();
+					updateSpinner();
 				} else if(hello.equals("Subtraction")){ 
-						subtractionSpinner();
+						updateSpinner();
 
 				} else {
 					ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
@@ -63,26 +69,36 @@ public class ScoreSelectionMenu extends Activity {
 		});
 	}
 	
-	public void additionSpinner(){
-		String additionSets = " ";
+	public void updateSpinner(){
+		String sets = " ";
 
-		cursor = dbHelper.fetchAllAdds();
+		help = new GameDbHelper(ScoreSelectionMenu.this);
+
+		db = help.getWritableDatabase();
+		
+		if (hello.equals("Addition")) {
+			cursor = db.rawQuery("SELECT * FROM game WHERE type = 'Addition'", null);
+
+		} else if(hello.equals("Subtraction")){ 
+			cursor = db.rawQuery("SELECT * FROM game WHERE type = 'Subtraction'", null);
+
+		}
 		startManagingCursor(cursor);
 
 		cursor.moveToFirst();
-		additionSets = additionSets
+		sets = sets
 				+ cursor.getString(cursor
-						.getColumnIndexOrThrow(GameDbAdapter.KEY_A_SET))
+						.getColumnIndexOrThrow(GameDbAdapter.KEY_SET))
 				+ ",";
 		while (!cursor.isAfterLast()) {
 			if (cursor.moveToNext())
-				additionSets = additionSets
+				sets = sets
 						+ cursor.getString(cursor
-								.getColumnIndexOrThrow(GameDbAdapter.KEY_A_SET))
+								.getColumnIndexOrThrow(GameDbAdapter.KEY_SET))
 						+ ",";
 		}
-		System.out.println(additionSets);
-		String setArray[] = additionSets.split(",");
+		System.out.println(sets);
+		String setArray[] = sets.split(",");
 		ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
 				ScoreSelectionMenu.this,
 				android.R.layout.simple_spinner_item,setArray);
@@ -90,30 +106,12 @@ public class ScoreSelectionMenu extends Activity {
 		spinner2.setAdapter(adapter2);
 	}
 	
-	public void subtractionSpinner(){
-		String subtractionSets = " ";
-
-		cursor = dbHelper.fetchAllSubs();
-		startManagingCursor(cursor);
-
-		cursor.moveToFirst();
-		subtractionSets = subtractionSets
-				+ cursor.getString(cursor
-						.getColumnIndexOrThrow(GameDbAdapter.KEY_S_SET))
-				+ ",";
-		while (!cursor.isAfterLast()) {
-			if (cursor.moveToNext())
-				subtractionSets = subtractionSets
-						+ cursor.getString(cursor
-								.getColumnIndexOrThrow(GameDbAdapter.KEY_S_SET))
-						+ ",";
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (dbHelper != null) {
+			dbHelper.close();
 		}
-		System.out.println(subtractionSets);
-		String setArray[] = subtractionSets.split(",");
-		ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
-				ScoreSelectionMenu.this,
-				android.R.layout.simple_spinner_item,setArray);
-		adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner2.setAdapter(adapter2);
 	}
+
 }

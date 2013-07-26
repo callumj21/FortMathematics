@@ -7,15 +7,15 @@ import android.util.Log;
 
 public class GameDbHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "applicationdata";
-	private static final int DATABASE_VERSION = 48;
+	private static final int DATABASE_VERSION = 52;
 	public static int addTableCreation = 0;
 	public static int subTableCreation = 0;
 
 	// Database creation sql statement for the add table
-	private static final String ADD_CREATE = "create table addition (_id integer primary key autoincrement, "
-			+ "a_set text not null, a_description text not null, a_questions text not null, a_answers text not null);";
-	private static final String SUB_CREATE = "create table subtraction (_id integer primary key autoincrement, "
-			+ "s_set text not null, s_description text not null, s_questions text not null, s_answers text not null);";
+	private static final String GAME_CREATE = "create table game (_id integer primary key autoincrement, "
+			+ "type text not null, g_set text not null, " +
+			"description text not null, questions text not null, answers text not null);";;
+
 	public GameDbHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -27,8 +27,7 @@ public class GameDbHelper extends SQLiteOpenHelper {
 		// database pre entered instances are only entered into the table once
 		addTableCreation = 1;
 		subTableCreation = 1;
-		database.execSQL(ADD_CREATE);
-		database.execSQL(SUB_CREATE);
+		database.execSQL(GAME_CREATE);
 
 	}
 
@@ -40,8 +39,7 @@ public class GameDbHelper extends SQLiteOpenHelper {
 		Log.w(GameDbHelper.class.getName(), "Upgrading database from version "
 				+ oldVersion + " to " + newVersion
 				+ ", which will destroy all old data");
-		database.execSQL("DROP TABLE IF EXISTS addition");
-		database.execSQL("DROP TABLE IF EXISTS subtraction");
+		database.execSQL("DROP TABLE IF EXISTS game");
 
 		onCreate(database);
 	}

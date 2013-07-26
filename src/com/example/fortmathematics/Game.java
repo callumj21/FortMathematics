@@ -229,9 +229,9 @@ public class Game extends Activity {
 		mRowId = null;
 		Bundle extras = getIntent().getExtras();
 		mRowId = (bundle == null) ? null : (Long) bundle
-				.getSerializable(GameDbAdapter.KEY_A_ROWID);
+				.getSerializable(GameDbAdapter.KEY_ROWID);
 		if (extras != null) {
-			mRowId = extras.getLong(GameDbAdapter.KEY_A_ROWID);
+			mRowId = extras.getLong(GameDbAdapter.KEY_ROWID);
 		}
 
 		prepareGame();
@@ -270,24 +270,17 @@ public class Game extends Activity {
 		timeList = new ArrayList<Float>();
 		if (mRowId != null) {
 			Cursor gameCursor = null;
-			if (GameSelection.getSelection().equals("Addition")) {
-				gameCursor = mDbHelper.fetchAddition(mRowId);
+		
+				gameCursor = mDbHelper.fetchGame(mRowId);
 				startManagingCursor(gameCursor);
 				set = gameCursor.getString(gameCursor
-						.getColumnIndexOrThrow(GameDbAdapter.KEY_A_SET));
+						.getColumnIndexOrThrow(GameDbAdapter.KEY_SET));
 
 				questions = gameCursor.getString(gameCursor
-						.getColumnIndexOrThrow(GameDbAdapter.KEY_A_QUESTIONS));
+						.getColumnIndexOrThrow(GameDbAdapter.KEY_QUESTIONS));
 				answers = gameCursor.getString(gameCursor
-						.getColumnIndexOrThrow(GameDbAdapter.KEY_A_ANSWERS));
-			} else if (GameSelection.getSelection().equals("Subtraction")) {
-				gameCursor = mDbHelper.fetchSubtraction(mRowId);
-				startManagingCursor(gameCursor);
-
-				questions = gameCursor.getString(gameCursor
-						.getColumnIndexOrThrow(GameDbAdapter.KEY_S_QUESTIONS));
-				answers = gameCursor.getString(gameCursor
-						.getColumnIndexOrThrow(GameDbAdapter.KEY_S_ANSWERS));
+						.getColumnIndexOrThrow(GameDbAdapter.KEY_ANSWERS));
+			
 
 			}
 
@@ -308,7 +301,7 @@ public class Game extends Activity {
 				answersList.add(answersArray[i]);
 			}
 
-		}
+		
 
 	}
 

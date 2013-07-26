@@ -9,19 +9,14 @@ import android.util.Log;
 
 public class GameDbAdapter {
 	// Database fields
-	public static final String KEY_A_ROWID = "_id";
-	public static final String KEY_A_SET = "a_set";
-	public static final String KEY_A_DESCRIPTION = "a_description";
-	public static final String KEY_A_QUESTIONS = "a_questions";
-	public static final String KEY_A_ANSWERS = "a_answers";
-	private static final String ADD_TABLE = "addition";
+	public static final String KEY_ROWID = "_id";
+	public static final String KEY_TYPE = "type";
+	public static final String KEY_SET = "g_set";
+	public static final String KEY_DESCRIPTION = "description";
+	public static final String KEY_QUESTIONS = "questions";
+	public static final String KEY_ANSWERS = "answers";
+	private static final String GAME_TABLE = "game";
 
-	public static final String KEY_S_ROWID = "_id";
-	public static final String KEY_S_SET = "s_set";
-	public static final String KEY_S_DESCRIPTION = "s_description";
-	public static final String KEY_S_QUESTIONS = "s_questions";
-	public static final String KEY_S_ANSWERS = "s_answers";
-	private static final String SUB_TABLE = "subtraction";
 
 	private Context context;
 	private SQLiteDatabase database;
@@ -47,32 +42,32 @@ public class GameDbAdapter {
 	}
 
 	// Creates the Add Instance
-	public long createAdd(String set, String description, String questions,
+	public long createGame(String type,String set, String description, String questions,
 			String answers) {
-		ContentValues initialValues = createContentValues(set, description,
+		ContentValues initialValues = createContentValues(type,set, description,
 				questions, answers);
 		Log.d(DB_TAG, "Hotel created Successfully values are " + description
 				+ " " + questions);
-		return database.insert(ADD_TABLE, null, initialValues);
+		return database.insert(GAME_TABLE, null, initialValues);
 	}
 
 	/**
-	 * * Return a Cursor over the list of all addition games in the database * * @return
+	 * * Return a Cursor over the list of all  games in the database * * @return
 	 * Cursor over all hotels
 	 */
 
-	public Cursor fetchAllAdds() {
-		return database.query(ADD_TABLE, new String[] { KEY_A_ROWID, KEY_A_SET,
-				KEY_A_DESCRIPTION, KEY_A_QUESTIONS, KEY_A_ANSWERS }, null,
+	public Cursor fetchAllGames() {
+		return database.query(GAME_TABLE, new String[] { KEY_ROWID, KEY_TYPE, KEY_SET,
+				KEY_DESCRIPTION, KEY_QUESTIONS, KEY_ANSWERS }, null,
 				null, null, null, null);
 	}
 
 	// Return a Cursor positioned at the defined addition set
 
-	public Cursor fetchAddition(long rowId) throws SQLException {
-		Cursor mCursor = database.query(true, ADD_TABLE, new String[] {
-				KEY_A_ROWID, KEY_A_SET, KEY_A_DESCRIPTION, KEY_A_QUESTIONS,
-				KEY_A_ANSWERS }, KEY_A_ROWID + "=" + rowId, null, null, null,
+	public Cursor fetchGame(long rowId) throws SQLException {
+		Cursor mCursor = database.query(true, GAME_TABLE, new String[] {
+				KEY_ROWID, 	KEY_TYPE, KEY_SET, KEY_DESCRIPTION, KEY_QUESTIONS,
+				KEY_ANSWERS }, KEY_ROWID + "=" + rowId, null, null, null,
 				null, null);
 		if (mCursor != null) {
 			mCursor.moveToFirst();
@@ -80,52 +75,18 @@ public class GameDbAdapter {
 		return mCursor;
 	}
 
-	private ContentValues createContentValues(String set, String description,
+	private ContentValues createContentValues(String type, String set, String description,
 			String questions, String answers) {
 		ContentValues values = new ContentValues();
-		values.put(KEY_A_SET, set);
-		values.put(KEY_A_DESCRIPTION, description);
-		values.put(KEY_A_QUESTIONS, questions);
-		values.put(KEY_A_ANSWERS, answers);
+		values.put(KEY_TYPE, type);
+		values.put(KEY_SET, set);
+		values.put(KEY_DESCRIPTION, description);
+		values.put(KEY_QUESTIONS, questions);
+		values.put(KEY_ANSWERS, answers);
 		Log.d(DB_TAG, "Values successfully entered into add database table");
 		return values;
 
 	}
 
-	public long createSub(String set, String description, String questions,
-			String answers) {
-		ContentValues initialValues = sCreateContentValues(set, description,
-				questions, answers);
-		Log.d(DB_TAG, "subtraction created Successfully values are " + description
-				+ " " + questions);
-		return database.insert(SUB_TABLE, null, initialValues);
-	}
-	
-	public Cursor fetchAllSubs() {
-		return database.query(SUB_TABLE, new String[] { KEY_S_ROWID, KEY_S_SET,
-				KEY_S_DESCRIPTION, KEY_S_QUESTIONS, KEY_S_ANSWERS }, null,
-				null, null, null, null);
-	}
 
-	public Cursor fetchSubtraction(long rowId) throws SQLException {
-		Cursor mCursor = database.query(true, SUB_TABLE, new String[] {
-				KEY_S_ROWID, KEY_S_SET, KEY_S_DESCRIPTION, KEY_S_QUESTIONS,
-				KEY_S_ANSWERS }, KEY_S_ROWID + "=" + rowId, null, null, null,
-				null, null);
-		if (mCursor != null) {
-			mCursor.moveToFirst();
-		}
-		return mCursor;
-	}
-
-	private ContentValues sCreateContentValues(String set, String description,
-			String questions, String answers) {
-		ContentValues values = new ContentValues();
-		values.put(KEY_S_SET, set);
-		values.put(KEY_S_DESCRIPTION, description);
-		values.put(KEY_S_QUESTIONS, questions);
-		values.put(KEY_S_ANSWERS, answers);
-		Log.d(DB_TAG, "Values successfully entered into sub database table");
-		return values;
-	}
 }

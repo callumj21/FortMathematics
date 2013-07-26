@@ -157,7 +157,7 @@ public class FortMaths extends Activity {
 				eventType = xpp.next();
 				if (!answers.equals("") && !set.equals("") && !des.equals("")
 						&& !questions.equals("")) {
-					dbHelper.createSub(set, des, questions, answers);
+					dbHelper.createGame("Subtraction",set, des, questions, answers);
 					set = des = questions = answers = "";
 				}
 			}
@@ -192,7 +192,7 @@ public class FortMaths extends Activity {
 				eventType = xpp.next();
 				if (!answers.equals("") && !set.equals("") && !des.equals("")
 						&& !questions.equals("")) {
-					dbHelper.createAdd(set, des, questions, answers);
+					dbHelper.createGame("Addition",set, des, questions, answers);
 					set = des = questions = answers = "";
 				}
 			}
