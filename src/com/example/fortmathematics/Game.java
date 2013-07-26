@@ -41,9 +41,10 @@ public class Game extends Activity {
 	private int dotCount = 0;
 
 	private static ArrayList<String> questionsList = new ArrayList<String>();
-	private ArrayList<String> answersList = new ArrayList<String>();
+	private static ArrayList<String> answersList = new ArrayList<String>();
 	private static ArrayList<String> correct = new ArrayList<String>();
 	private static ArrayList<Float> timeList = new ArrayList<Float>();
+	private static ArrayList<String> userAnswers = new ArrayList<String>();
 
 	private static int current = 0;
 	private Handler customHandler = new Handler();
@@ -261,6 +262,7 @@ public class Game extends Activity {
 
 	@SuppressWarnings("deprecation")
 	private void prepareGame() {
+		userAnswers = new ArrayList<String>();
 		answersList = new ArrayList<String>();
 		questionsList = new ArrayList<String>();
 		correct = new ArrayList<String>();
@@ -391,13 +393,17 @@ public class Game extends Activity {
 		float userAnswer;
 		if (answer.length() == 0 || dotCount > 1) {
 			actualAnswer = Float.parseFloat(answersList.get(current));
-			userAnswer = -1;
+			userAnswer = Float.MAX_VALUE;
+			userAnswers.add("no answer");
 		} else {
 			actualAnswer = Float.parseFloat(answersList.get(current));
 			userAnswer = Float.parseFloat(answer);
 			System.out.println(userAnswer);
+			userAnswers.add(answer);
+
 
 		}
+
 
 			questionTime = ((timeSwapBuff + timeInMilliseconds) - questionFinish) / 1000L;
 			questionFinish = (float) (timeSwapBuff + timeInMilliseconds);
@@ -473,6 +479,10 @@ public class Game extends Activity {
 	public static ArrayList<String> getQuestions() {
 		return questionsList;
 	}
+	
+	public static ArrayList<String> getAnswers(){
+		return answersList;
+	}
 
 	public static ArrayList<String> getResults() {
 		return correct;
@@ -484,6 +494,10 @@ public class Game extends Activity {
 
 	public static ArrayList<Float> getTimes() {
 		return timeList;
+	}
+	
+	public static ArrayList<String> getUsersAnswers(){
+		return userAnswers;
 	}
 
 	public static void resetCurrent() {
@@ -497,6 +511,7 @@ public class Game extends Activity {
 		customHandler.removeCallbacks(updateTimerThread);
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(Game.this);
+		builder.setCancelable(false);
 		builder.setTitle("Pause Menu").setItems(R.array.pause_array,
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {

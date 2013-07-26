@@ -63,8 +63,7 @@ public class FortMaths extends Activity {
 
 		});
 
-		if (flag == 0 && GameDbHelper.addTableCreation == 1
-				&& GameDbHelper.subTableCreation == 1) {
+		if (flag == 0 && GameDbHelper.gameTableCreation == 1) {
 			 AsyncTask task = new ParseXMLFile().execute();
 		}
 //			final ProgressDialog progressDialog = ProgressDialog.show(this,

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6px"
+        android:text="@+id/TextView01"
+        android:textSize="20dp"
+        android:textStyle="bold" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/label1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/label"
+        android:text="@+id/TextView02"
+        android:textSize="18dp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/label2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/label1"
+        android:text="@+id/TextView03"
+        android:textSize="18dp" >
+    </TextView>
+
+</RelativeLayout>

@@ -27,6 +27,7 @@
         <activity android:name="ShowSets"></activity>
         <activity android:name="GameSummary"></activity>
         <activity android:name="ScoreSelectionMenu"></activity>
+        <activity android:name="ScoresList"></activity>
     </application>
 
 </manifest>

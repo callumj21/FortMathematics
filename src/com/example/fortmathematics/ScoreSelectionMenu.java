@@ -1,14 +1,16 @@
 package com.example.fortmathematics;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 public class ScoreSelectionMenu extends Activity {
@@ -19,8 +21,11 @@ public class ScoreSelectionMenu extends Activity {
 	private Cursor cursor;
 	private GameDbHelper help;
 	private SQLiteDatabase db;
-	
-	private String hello;
+
+	private static String type;
+	private static String set;
+
+	private Button viewScores;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,7 @@ public class ScoreSelectionMenu extends Activity {
 
 		spinner1 = (Spinner) findViewById(R.id.spinner1);
 		spinner2 = (Spinner) findViewById(R.id.spinner2);
+		viewScores = (Button) findViewById(R.id.table_button);
 		ArrayAdapter<String> adapterType = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, new String[] {
 						"Addition", "Subtraction", "Multiplication",
@@ -45,11 +51,11 @@ public class ScoreSelectionMenu extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				 hello = spinner1.getSelectedItem().toString();
-				if (hello.equals("Addition")) {
+				type = spinner1.getSelectedItem().toString();
+				if (type.equals("Addition")) {
 					updateSpinner();
-				} else if(hello.equals("Subtraction")){ 
-						updateSpinner();
+				} else if (type.equals("Subtraction")) {
+					updateSpinner();
 
 				} else {
 					ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
@@ -59,6 +65,19 @@ public class ScoreSelectionMenu extends Activity {
 					adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 					spinner2.setAdapter(adapter2);
 				}
+
+				viewScores.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						set = spinner2.getSelectedItem().toString();
+						Intent i = new Intent(ScoreSelectionMenu.this,
+								ScoresList.class);
+						startActivity(i);
+					}
+
+				});
+
 			}
 
 			@Override
@@ -68,19 +87,21 @@ public class ScoreSelectionMenu extends Activity {
 			}
 		});
 	}
-	
-	public void updateSpinner(){
+
+	public void updateSpinner() {
 		String sets = " ";
 
 		help = new GameDbHelper(ScoreSelectionMenu.this);
 
 		db = help.getWritableDatabase();
-		
-		if (hello.equals("Addition")) {
-			cursor = db.rawQuery("SELECT * FROM game WHERE type = 'Addition'", null);
 
-		} else if(hello.equals("Subtraction")){ 
-			cursor = db.rawQuery("SELECT * FROM game WHERE type = 'Subtraction'", null);
+		if (type.equals("Addition")) {
+			cursor = db.rawQuery("SELECT * FROM game WHERE type = 'Addition'",
+					null);
+
+		} else if (type.equals("Subtraction")) {
+			cursor = db.rawQuery(
+					"SELECT * FROM game WHERE type = 'Subtraction'", null);
 
 		}
 		startManagingCursor(cursor);
@@ -88,8 +109,8 @@ public class ScoreSelectionMenu extends Activity {
 		cursor.moveToFirst();
 		sets = sets
 				+ cursor.getString(cursor
-						.getColumnIndexOrThrow(GameDbAdapter.KEY_SET))
-				+ ",";
+						.getColumnIndexOrThrow(GameDbAdapter.KEY_SET)) + ",";
+		sets = sets.substring(1);
 		while (!cursor.isAfterLast()) {
 			if (cursor.moveToNext())
 				sets = sets
@@ -99,19 +120,30 @@ public class ScoreSelectionMenu extends Activity {
 		}
 		System.out.println(sets);
 		String setArray[] = sets.split(",");
+		for(int i = 0; i < setArray.length; i++){
+			System.out.println(setArray[i]);
+		}
 		ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
-				ScoreSelectionMenu.this,
-				android.R.layout.simple_spinner_item,setArray);
+				ScoreSelectionMenu.this, android.R.layout.simple_spinner_item,
+				setArray);
 		adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner2.setAdapter(adapter2);
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		if (dbHelper != null) {
 			dbHelper.close();
 		}
+	}
+
+	public static String getType() {
+		return type;
+	}
+	
+	public static String getSet() {
+		return set;
 	}
 
 }

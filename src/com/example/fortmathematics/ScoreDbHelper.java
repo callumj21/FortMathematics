@@ -5,17 +5,18 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class GameDbHelper extends SQLiteOpenHelper {
-	private static final String DATABASE_NAME = "applicationdata";
-	private static final int DATABASE_VERSION = 2;
-	public static int gameTableCreation = 0;
+public class ScoreDbHelper  extends SQLiteOpenHelper {
+	private static final String DATABASE_NAME = "applicationdata1";
+	private static final int DATABASE_VERSION = 3;
+	public static int scoreTableCreation = 0;
 
 	// Database creation sql statement for the add table
-	private static final String GAME_CREATE = "create table game (_id integer primary key autoincrement, "
-			+ "type text not null, g_set text not null, " +
-			"description text not null, questions text not null, answers text not null);";;
+	private static final String SCORE_CREATE = "create table score (_id integer primary key autoincrement, "
+			+ "name text not null, score text not null, type text not null, g_set text not null, " +
+			"questions text not null, answers text not null, times text not null, total_time text not null, " +
+			"results text not null, user text not null);";
 
-	public GameDbHelper(Context context) {
+	public ScoreDbHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
@@ -24,8 +25,8 @@ public class GameDbHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase database) {
 		// Sets the variable to 1 so during a creation or updation of the
 		// database pre entered instances are only entered into the table once
-		gameTableCreation = 1;
-		database.execSQL(GAME_CREATE);
+		scoreTableCreation = 1;
+		database.execSQL(SCORE_CREATE);
 
 	}
 
@@ -34,10 +35,10 @@ public class GameDbHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase database, int oldVersion,
 			int newVersion) {
-		Log.w(GameDbHelper.class.getName(), "Upgrading database from version "
+		Log.w(ScoreDbHelper.class.getName(), "Upgrading database from version "
 				+ oldVersion + " to " + newVersion
 				+ ", which will destroy all old data");
-		database.execSQL("DROP TABLE IF EXISTS game");
+		database.execSQL("DROP TABLE IF EXISTS score");
 
 		onCreate(database);
 	}
