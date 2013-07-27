@@ -11,7 +11,7 @@ public class ScoreDbAdapter {
 	// Database fields
 	public static final String KEY_ROWID = "_id";
 	public static final String KEY_NAME = "name";
-	public static final String KEY_SCORE = "score";
+	public static final String KEY_SCORE = "g_score";
 	public static final String KEY_TYPE = "type";
 	public static final String KEY_SET = "g_set";
 	public static final String KEY_QUESTIONS = "questions";

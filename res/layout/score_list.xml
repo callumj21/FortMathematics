@@ -11,10 +11,13 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/info"
-            android:layout_width="fill_parent"
-            android:layout_height="41dp"
-            android:text="Please Select the score you wish to view"/>
+            android:id="@+id/score_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" >
+        </TextView>
+
+       
 
         <ListView
             android:id="@id/android:list"

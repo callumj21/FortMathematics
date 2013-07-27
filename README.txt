@@ -1,0 +1,2 @@
+Fort Mathematics is an android mobile maths game app I have been making for fun during the middle of my summer holidays. Just to get back into my android
+development hobbie. Will provide a proper readme when the game is done on how to setup the project
