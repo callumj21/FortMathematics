@@ -23,12 +23,16 @@ public class FortMaths extends Activity {
 
 	private Button enterFort;
 	private Button scores;
-
+	private Button addGame;
+	private Button about;
 	private Cursor cursor;
 	public static int flag = 0;
 	private String game_tag = "Game";
 	private int addFile = R.xml.add;
 	private int subFile = R.xml.subtraction;
+	private int multFile = R.xml.multiplication;
+	private int divFile = R.xml.division;
+	private int mixupFile = R.xml.mixup;
 	private GameDbAdapter dbHelper;
 	Context context = FortMaths.this;
 
@@ -51,7 +55,29 @@ public class FortMaths extends Activity {
 			}
 
 		});
+		
+		about = (Button) findViewById(R.id.about);
+		about.setOnClickListener(new OnClickListener() {
 
+			@Override
+			public void onClick(View arg0) {
+				Intent i = new Intent(FortMaths.this, About.class);
+				startActivity(i);
+			}
+
+		});
+
+		addGame = (Button) findViewById(R.id.add_game);
+		addGame.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Intent i = new Intent(FortMaths.this, AddGame.class);
+				startActivity(i);
+			}
+
+		});
+		
 		scores = (Button) findViewById(R.id.score);
 		scores.setOnClickListener(new OnClickListener() {
 
@@ -103,6 +129,9 @@ public class FortMaths extends Activity {
 			try {
 				addPopulate();
 				subPopulate();
+				multPopulate();
+				divPopulate();
+				mixPopulate();
 			} catch (XmlPullParserException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -152,7 +181,6 @@ public class FortMaths extends Activity {
 						&& xpp.getName().equals("answers")) {
 					answers = xpp.nextText();
 				}
-				System.out.println("questions");
 				eventType = xpp.next();
 				if (!answers.equals("") && !set.equals("") && !des.equals("")
 						&& !questions.equals("")) {
@@ -197,5 +225,113 @@ public class FortMaths extends Activity {
 			}
 
 		}
+		
+		private void multPopulate() throws XmlPullParserException, IOException {
+			Resources res = context.getResources();
+			XmlResourceParser xpp = res.getXml(multFile);
+			xpp.next();
+			int eventType = xpp.getEventType();
+			String set = "";
+			String des = "";
+			String questions = "";
+			String answers = "";
+			while (eventType != XmlPullParser.END_DOCUMENT) {
+
+				if (eventType == XmlPullParser.START_DOCUMENT) {
+				} else if (eventType == XmlPullParser.START_TAG
+						&& xpp.getName().equals("set")) {
+					set = xpp.nextText();
+				} else if (eventType == XmlPullParser.START_TAG
+						&& xpp.getName().equals("description")) {
+					des = xpp.nextText();
+				} else if (eventType == XmlPullParser.START_TAG
+						&& xpp.getName().equals("questions")) {
+					questions = xpp.nextText();
+				} else if (eventType == XmlPullParser.START_TAG
+						&& xpp.getName().equals("answers")) {
+					answers = xpp.nextText();
+				}
+				eventType = xpp.next();
+				if (!answers.equals("") && !set.equals("") && !des.equals("")
+						&& !questions.equals("")) {
+					dbHelper.createGame("Multiplication",set, des, questions, answers);
+					set = des = questions = answers = "";
+				}
+			}
+
+		}
+		
+		private void divPopulate() throws XmlPullParserException, IOException {
+			Resources res = context.getResources();
+			XmlResourceParser xpp = res.getXml(divFile);
+			xpp.next();
+			int eventType = xpp.getEventType();
+			String set = "";
+			String des = "";
+			String questions = "";
+			String answers = "";
+			while (eventType != XmlPullParser.END_DOCUMENT) {
+
+				if (eventType == XmlPullParser.START_DOCUMENT) {
+				} else if (eventType == XmlPullParser.START_TAG
+						&& xpp.getName().equals("set")) {
+					set = xpp.nextText();
+				} else if (eventType == XmlPullParser.START_TAG
+						&& xpp.getName().equals("description")) {
+					des = xpp.nextText();
+				} else if (eventType == XmlPullParser.START_TAG
+						&& xpp.getName().equals("questions")) {
+					questions = xpp.nextText();
+				} else if (eventType == XmlPullParser.START_TAG
+						&& xpp.getName().equals("answers")) {
+					answers = xpp.nextText();
+				}
+				eventType = xpp.next();
+				if (!answers.equals("") && !set.equals("") && !des.equals("")
+						&& !questions.equals("")) {
+					dbHelper.createGame("Division",set, des, questions, answers);
+					set = des = questions = answers = "";
+				}
+			}
+
+		}
+		
+		
+		private void mixPopulate() throws XmlPullParserException, IOException {
+			Resources res = context.getResources();
+			XmlResourceParser xpp = res.getXml(mixupFile);
+			xpp.next();
+			int eventType = xpp.getEventType();
+			String set = "";
+			String des = "";
+			String questions = "";
+			String answers = "";
+			while (eventType != XmlPullParser.END_DOCUMENT) {
+
+				if (eventType == XmlPullParser.START_DOCUMENT) {
+				} else if (eventType == XmlPullParser.START_TAG
+						&& xpp.getName().equals("set")) {
+					set = xpp.nextText();
+				} else if (eventType == XmlPullParser.START_TAG
+						&& xpp.getName().equals("description")) {
+					des = xpp.nextText();
+				} else if (eventType == XmlPullParser.START_TAG
+						&& xpp.getName().equals("questions")) {
+					questions = xpp.nextText();
+				} else if (eventType == XmlPullParser.START_TAG
+						&& xpp.getName().equals("answers")) {
+					answers = xpp.nextText();
+				}
+				eventType = xpp.next();
+				if (!answers.equals("") && !set.equals("") && !des.equals("")
+						&& !questions.equals("")) {
+					dbHelper.createGame("Mixup",set, des, questions, answers);
+					set = des = questions = answers = "";
+				}
+			}
+
+		}
 	}
+	
+	
 }

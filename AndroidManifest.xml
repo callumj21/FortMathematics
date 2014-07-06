@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="10"
+        android:minSdkVersion="11"
         android:targetSdkVersion="17" />
 
     <application
@@ -28,6 +28,10 @@
         <activity android:name="GameSummary"></activity>
         <activity android:name="ScoreSelectionMenu"></activity>
         <activity android:name="ScoresList"></activity>
+        <activity android:name="PlayerResults"></activity>
+        <activity android:name="AddGame"></activity>
+        <activity android:name="InputQuestions" android:theme="@android:style/Theme.Holo.Dialog"></activity>
+        <activity android:name="About" android:theme="@android:style/Theme.Holo.Dialog"></activity>
     </application>
 
 </manifest>

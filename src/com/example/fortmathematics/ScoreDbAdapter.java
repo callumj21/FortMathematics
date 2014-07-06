@@ -91,10 +91,10 @@ public class ScoreDbAdapter {
 		values.put(KEY_SET, set);
 		values.put(KEY_QUESTIONS, questions);
 		values.put(KEY_ANSWERS, answers);
-		values.put(KEY_TIMES, times);
-		values.put(KEY_TOTAL, total);
-		values.put(KEY_RESULTS, results);
 		values.put(KEY_USER, user);
+		values.put(KEY_TOTAL, total);
+		values.put(KEY_TIMES, times);
+		values.put(KEY_RESULTS, results);
 		Log.d(DB_TAG, "Values successfully entered into add database table");
 		return values;
 

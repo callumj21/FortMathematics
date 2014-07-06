@@ -1,9 +1,12 @@
 package com.example.fortmathematics;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
@@ -61,4 +64,17 @@ public class ScoresList extends ListActivity {
 				R.layout.score_row, cursor, from, to);
 		setListAdapter(hotel);
 	}
+	
+	   @Override
+	    protected void onListItemClick(ListView l, View v, int position, long id) { 
+	        super.onListItemClick(l, v, position, id); 
+	        Cursor score = dbHelper.fetchScore(id); 
+	        startManagingCursor(score); 
+	        Intent i = new Intent(this, PlayerResults.class); 
+	        // Put any details in with the intent if they exist already applies 
+	        // to an updation 
+	        i.putExtra(ScoreDbAdapter.KEY_ROWID, id); 
+	        // Activity returns an result if called with startActivityForResult 
+	        startActivity(i); 
+	    } 
 }

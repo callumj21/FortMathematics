@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -288,7 +289,7 @@ public class Game extends Activity {
 
 			Log.d("hello", questions);
 			String questionsArray[] = questions.split(",");
-
+			System.out.println(questions);
 			for (int i = 0; i < questionsArray.length; i++) {
 				System.out.println(questionsArray[i]);
 				questionsList.add(questionsArray[i]);
@@ -303,6 +304,7 @@ public class Game extends Activity {
 				answersList.add(answersArray[i]);
 			}
 
+			System.out.println(questionsList.size());
 		
 
 	}

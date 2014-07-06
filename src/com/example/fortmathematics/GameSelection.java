@@ -24,12 +24,11 @@ public class GameSelection extends ListActivity {
 		// Create the Simple Adaptar
 		SimpleAdapter adapter = new SimpleAdapter(this, list,
 				R.layout.selection_row, new String[] { "gameMode",
-						"description", }, new int[] { R.id.text1, R.id.text2});
+						"description", }, new int[] { R.id.text1, R.id.text2 });
 		// Call the populateList Method
 		populateList();
 		setListAdapter(adapter);
 
-		
 	}
 
 	static final ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
@@ -44,28 +43,36 @@ public class GameSelection extends ListActivity {
 		gameListExists = 1;
 		HashMap<String, String> temp = new HashMap<String, String>();
 		temp.put("gameMode", "Addition");
-		temp.put("description", "In this game mode you will have to answer addition questions from a chosen set");
+		temp.put(
+				"description",
+				"In this game mode you will have to answer addition questions from a chosen set");
 		list.add(temp);
 		HashMap<String, String> temp2 = new HashMap<String, String>();
 		temp2.put("gameMode", "Subtraction");
-		temp2.put("description", "In this game mode you will have to answer subtraction questions from a chosen set");
+		temp2.put(
+				"description",
+				"In this game mode you will have to answer subtraction questions from a chosen set");
 		list.add(temp2);
 		HashMap<String, String> temp3 = new HashMap<String, String>();
 		temp3.put("gameMode", "Multiplications");
-		temp3.put("description", "In this game mode you will have to answer multiplication questions from a chosen set");
+		temp3.put(
+				"description",
+				"In this game mode you will have to answer multiplication questions from a chosen set");
 		list.add(temp3);
 		HashMap<String, String> temp4 = new HashMap<String, String>();
 		temp4.put("gameMode", "Division");
-		temp4.put("description", "In this game mode you will have to answer division questions from a chosen set");
+		temp4.put(
+				"description",
+				"In this game mode you will have to answer division questions from a chosen set");
 		list.add(temp4);
 		HashMap<String, String> temp5 = new HashMap<String, String>();
 		temp5.put("gameMode", "Mixup");
-		temp5.put("description", "In this game mode you will have to answer a mixture of questions from a chosen set");
+		temp5.put(
+				"description",
+				"In this game mode you will have to answer a mixture of questions from a chosen set");
 		list.add(temp5);
-		
+
 	}
-
-
 
 	// Method for when a List Item is clicked
 	protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -74,50 +81,44 @@ public class GameSelection extends ListActivity {
 		// Checks what item was clicked then sets the phone number corresponding
 		// to that list item
 		if (position == 0) {
-			
+
 			gameSelection = "Addition";
-			Intent i = new Intent(GameSelection.this,ShowSets.class);
+			Intent i = new Intent(GameSelection.this, ShowSets.class);
 			startActivity(i);
 			finish();
 
 		} else if (position == 1) {
 			gameSelection = "Subtraction";
-			Intent i = new Intent(GameSelection.this,ShowSets.class);
+			Intent i = new Intent(GameSelection.this, ShowSets.class);
 			startActivity(i);
 			finish();
 
+		} else if (position == 2) {
+			gameSelection = "Multiplication";
+			Intent i = new Intent(GameSelection.this, ShowSets.class);
+			startActivity(i);
+			finish();
+		} else if (position == 3) {
+			gameSelection = "Division";
+			Intent i = new Intent(GameSelection.this, ShowSets.class);
+			startActivity(i);
+			finish();
+		} else if (position == 4) {
+			gameSelection = "Mixup";
+			Intent i = new Intent(GameSelection.this, ShowSets.class);
+			startActivity(i);
+			finish();
 		}
-		//else if (position == 2) {
-//			phone = "tel:+441314774000";
-//			Log.d(PHONE_TAG, "Phone number is set too " + phone);
-//			registerForContextMenu(getListView());
-//			v.showContextMenu();
-//			unregisterForContextMenu(getListView());
-//
-//		} else if (position == 3) {
-//			phone = "tel:+441313332255";
-//			Log.d(PHONE_TAG, "Phone number is set too " + phone);
-//			registerForContextMenu(getListView());
-//			v.showContextMenu();
-//			unregisterForContextMenu(getListView());
-//
-//		} else if (position == 4) {
-//			phone = "tel:+441315556363";
-//			Log.d(PHONE_TAG, "Phone number is set too " + phone);
-//			registerForContextMenu(getListView());
-//			v.showContextMenu();
-//			unregisterForContextMenu(getListView());
-		
-		}
-	
-	
-	public static String getSelection(){
+
+	}
+
+	public static String getSelection() {
 		return gameSelection;
 	}
-	
+
 	@Override
-	public void onBackPressed(){
-		Intent i = new Intent(GameSelection.this,FortMaths.class);
+	public void onBackPressed() {
+		Intent i = new Intent(GameSelection.this, FortMaths.class);
 		startActivity(i);
 		finish();
 	}

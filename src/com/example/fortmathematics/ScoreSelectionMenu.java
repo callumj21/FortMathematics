@@ -52,19 +52,7 @@ public class ScoreSelectionMenu extends Activity {
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				type = spinner1.getSelectedItem().toString();
-				if (type.equals("Addition")) {
-					updateSpinner();
-				} else if (type.equals("Subtraction")) {
-					updateSpinner();
-
-				} else {
-					ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
-							ScoreSelectionMenu.this,
-							android.R.layout.simple_spinner_item,
-							new String[] { "nothing here" });
-					adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-					spinner2.setAdapter(adapter2);
-				}
+				updateSpinner();
 
 				viewScores.setOnClickListener(new OnClickListener() {
 
@@ -102,6 +90,17 @@ public class ScoreSelectionMenu extends Activity {
 		} else if (type.equals("Subtraction")) {
 			cursor = db.rawQuery(
 					"SELECT * FROM game WHERE type = 'Subtraction'", null);
+		} else if (type.equals("Multiplication")) {
+			cursor = db.rawQuery(
+					"SELECT * FROM game WHERE type = 'Multiplication'", null);
+
+		} else if (type.equals("Division")) {
+			cursor = db.rawQuery(
+					"SELECT * FROM game WHERE type = 'Division'", null);
+
+		} else if (type.equals("Mixup")) {
+			cursor = db.rawQuery(
+					"SELECT * FROM game WHERE type = 'Mixup'", null);
 
 		}
 		startManagingCursor(cursor);
@@ -120,7 +119,7 @@ public class ScoreSelectionMenu extends Activity {
 		}
 		System.out.println(sets);
 		String setArray[] = sets.split(",");
-		for(int i = 0; i < setArray.length; i++){
+		for (int i = 0; i < setArray.length; i++) {
 			System.out.println(setArray[i]);
 		}
 		ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
@@ -141,7 +140,7 @@ public class ScoreSelectionMenu extends Activity {
 	public static String getType() {
 		return type;
 	}
-	
+
 	public static String getSet() {
 		return set;
 	}

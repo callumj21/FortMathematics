@@ -18,7 +18,6 @@ public class ShowSets extends ListActivity {
 	private Cursor cursor;
 	private SQLiteDatabase db;
 
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,9 +27,8 @@ public class ShowSets extends ListActivity {
 		dbHelper = new GameDbAdapter(this);
 		dbHelper.open();
 
-	
-			fillData();
-		
+		fillData();
+
 	}
 
 	// Prepares to go to Hotel Details in order for an update to take place
@@ -39,11 +37,11 @@ public class ShowSets extends ListActivity {
 		super.onListItemClick(l, v, position, id);
 		Intent i = new Intent(this, Game.class);
 
-			Cursor a = dbHelper.fetchGame(id);
-			startManagingCursor(a);
+		Cursor a = dbHelper.fetchGame(id);
+		startManagingCursor(a);
 
-			i.putExtra(GameDbAdapter.KEY_ROWID, id);
-		
+		i.putExtra(GameDbAdapter.KEY_ROWID, id);
+
 		startActivity(i);
 
 		finish();
@@ -55,11 +53,22 @@ public class ShowSets extends ListActivity {
 		help = new GameDbHelper(ShowSets.this);
 
 		db = help.getWritableDatabase();
-		if(GameSelection.getSelection().equals("Addition")){
-		cursor = db.rawQuery("SELECT * FROM game WHERE type = 'Addition'", null);
-		} else if(GameSelection.getSelection().equals("Subtraction")){
-			cursor = db.rawQuery("SELECT * FROM game WHERE type = 'Subtraction'", null);
+		if (GameSelection.getSelection().equals("Addition")) {
+			cursor = db.rawQuery("SELECT * FROM game WHERE type = 'Addition'",
+					null);
+		} else if (GameSelection.getSelection().equals("Subtraction")) {
+			cursor = db.rawQuery(
+					"SELECT * FROM game WHERE type = 'Subtraction'", null);
 
+		} else if (GameSelection.getSelection().equals("Multiplication")) {
+			cursor = db.rawQuery(
+					"SELECT * From game WHERE type = 'Multiplication'", null);
+		} else if (GameSelection.getSelection().equals("Division")) {
+			cursor = db.rawQuery(
+					"SELECT * From game WHERE type = 'Division'", null);
+		} else if (GameSelection.getSelection().equals("Mixup")) {
+			cursor = db.rawQuery(
+					"SELECT * From game WHERE type = 'Mixup'", null);
 		}
 		startManagingCursor(cursor);
 
@@ -77,7 +86,6 @@ public class ShowSets extends ListActivity {
 		Log.d(game_tag, "Displayed Sets");
 	}
 
-	
 	// Called when activity finishes in order to close the database adapter
 	@Override
 	protected void onDestroy() {
@@ -96,14 +104,12 @@ public class ShowSets extends ListActivity {
 		super.onResume();
 
 	}
-	
+
 	@Override
-	public void onBackPressed(){
-		Intent i = new Intent(ShowSets.this,GameSelection.class);
+	public void onBackPressed() {
+		Intent i = new Intent(ShowSets.this, GameSelection.class);
 		startActivity(i);
 		finish();
 	}
-	
-	
 
 }

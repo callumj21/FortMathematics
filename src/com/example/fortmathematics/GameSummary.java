@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -51,6 +52,7 @@ public class GameSummary extends Activity {
 		gTimes = (TextView) findViewById(R.id.question_times);
 
 		nameBox = (EditText) findViewById(R.id.name_entry);
+
 
 		qList = Game.getQuestions();
 		rList = Game.getResults();
@@ -145,7 +147,7 @@ public class GameSummary extends Activity {
 		
 		if (mRowId == null) {
 			long id = mScoreDbHelper.createScore(userName, score, GameSelection.getSelection(), Game.getSet(),
-					qString,  answersStr, tString, Game.getTotalTime(), rString, uAnswersStr);
+					qString,  answersStr, uAnswersStr, Game.getTotalTime(),tString,  rString);
 			
 			Log.d("Score", "Score " + id + " created, values are");
 			Log.d("Score", "Name = " + userName);

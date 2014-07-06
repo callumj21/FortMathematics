@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Game Creation Area"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+     <Button
+         android:id="@+id/input_button"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_marginBottom="26dp"
+         android:layout_marginLeft="23dp"
+         android:layout_toRightOf="@+id/textView3"
+         android:text="Continue" />
+
+     <Spinner
+         android:id="@+id/spinner3"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/input_button"
+         android:layout_alignParentLeft="true" />
+
+     <TextView
+         android:id="@+id/TextView01"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/spinner3"
+         android:layout_alignParentLeft="true"
+         android:text="Number Of Questions"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+     <Spinner
+         android:id="@+id/spinner2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/TextView01"
+         android:layout_alignParentLeft="true"
+         android:layout_marginBottom="17dp" />
+
+     <TextView
+         android:id="@+id/textView3"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/spinner2"
+         android:layout_alignParentLeft="true"
+         android:text="Difficulty"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+     <Spinner
+         android:id="@+id/spinner1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/textView3"
+         android:layout_alignParentLeft="true" />
+
+     <TextView
+         android:id="@+id/textView2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/spinner1"
+         android:layout_alignParentLeft="true"
+         android:text="Type"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+     <TextView
+         android:id="@+id/textView4"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/textView2"
+         android:layout_marginBottom="28dp"
+         android:text="Game Name: " />
+
+     <EditText
+         android:id="@+id/game_name"
+         android:layout_width="120dp"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/textView4"
+         android:layout_alignBottom="@+id/textView4"
+         android:layout_alignRight="@+id/textView1"
+         android:ems="10" >
+
+         <requestFocus />
+     </EditText>
+
+</RelativeLayout>
+

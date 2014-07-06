@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Mixup>
+
+    <set>Set one</set>
+
+    <description>Easy</description>
+    
+    <questions>22 + 41, 26 - 8, 14 + 15, 7 * 15, 80 / 10, 43 - 21, (71 - 6 ) / 5, 47 - 27, 13 + 22, 16 * 5 </questions>
+	
+	<answers>63,18,29,105,8,22,13,20,35,80</answers>
+</Mixup>

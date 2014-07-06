@@ -26,19 +26,27 @@
            android:background="@drawable/score" />
 
        <Button
-           android:id="@+id/about"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_below="@+id/score"
-           android:layout_toLeftOf="@+id/score"
-           android:background="@drawable/about" />
-
-       <Button
            android:id="@+id/entry"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_centerVertical="true"
            android:layout_toLeftOf="@+id/score"
            android:background="@drawable/entry" />
+
+       <Button
+           android:id="@+id/add_game"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/score"
+           android:layout_toLeftOf="@+id/score"
+           android:background="@drawable/settings" />
+
+       <Button
+           android:id="@+id/about"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/add_game"
+           android:layout_toRightOf="@+id/add_game"
+           android:background="@drawable/about" />
 
 </RelativeLayout>

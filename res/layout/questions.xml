@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/box2"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/input"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:inputType="numberDecimal"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Medium Text" />
+
+    <Button
+        android:id="@+id/input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="112dp"
+        android:text="Input Question" />
+
+    <TextView
+        android:id="@+id/sym"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/box1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp"
+        android:text="Symbol" />
+
+    <EditText
+        android:id="@+id/box1"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/box2"
+        android:layout_below="@+id/question"
+        android:layout_marginTop="58dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="48dp"
+        android:text="Note during the creation of a Mixup game pressing the input button, with blank boxes will generate a new random symbol!" />
+
+</RelativeLayout>

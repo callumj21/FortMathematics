@@ -46,7 +46,7 @@ public class GameDbAdapter {
 			String answers) {
 		ContentValues initialValues = createContentValues(type,set, description,
 				questions, answers);
-		Log.d(DB_TAG, "Hotel created Successfully values are " + description
+		Log.d(DB_TAG, "Game created Successfully values are " + description
 				+ " " + questions);
 		return database.insert(GAME_TABLE, null, initialValues);
 	}
