@@ -10,6 +10,7 @@ package com.example.fortmathematics;
 public final class R {
     public static final class array {
         public static final int pause_array=0x7f070000;
+        public static final int stop_array=0x7f070001;
     }
     public static final class attr {
     }
@@ -49,38 +50,39 @@ public final class R {
         public static final int five_click=0x7f020016;
         public static final int five_non_click=0x7f020017;
         public static final int fort=0x7f020018;
-        public static final int four=0x7f020019;
-        public static final int four_click=0x7f02001a;
-        public static final int four_non_click=0x7f02001b;
-        public static final int ic_launcher=0x7f02001c;
-        public static final int math_challenge=0x7f02001d;
-        public static final int nine=0x7f02001e;
-        public static final int nine_click=0x7f02001f;
-        public static final int nine_non_click=0x7f020020;
-        public static final int one=0x7f020021;
-        public static final int one_click=0x7f020022;
-        public static final int one_non_click=0x7f020023;
-        public static final int score=0x7f020024;
-        public static final int score_click=0x7f020025;
-        public static final int score_non_click=0x7f020026;
-        public static final int settings=0x7f020027;
-        public static final int settings_click=0x7f020028;
-        public static final int settings_non_click=0x7f020029;
-        public static final int seven=0x7f02002a;
-        public static final int seven_click=0x7f02002b;
-        public static final int seven_non_click=0x7f02002c;
-        public static final int six=0x7f02002d;
-        public static final int six_click=0x7f02002e;
-        public static final int six_non_click=0x7f02002f;
-        public static final int three=0x7f020030;
-        public static final int three_click=0x7f020031;
-        public static final int three_non_click=0x7f020032;
-        public static final int two=0x7f020033;
-        public static final int two_click=0x7f020034;
-        public static final int two_non_click=0x7f020035;
-        public static final int zero=0x7f020036;
-        public static final int zero_click=0x7f020037;
-        public static final int zero_non_click=0x7f020038;
+        public static final int fort_maths_launcher=0x7f020019;
+        public static final int four=0x7f02001a;
+        public static final int four_click=0x7f02001b;
+        public static final int four_non_click=0x7f02001c;
+        public static final int ic_launcher=0x7f02001d;
+        public static final int math_challenge=0x7f02001e;
+        public static final int nine=0x7f02001f;
+        public static final int nine_click=0x7f020020;
+        public static final int nine_non_click=0x7f020021;
+        public static final int one=0x7f020022;
+        public static final int one_click=0x7f020023;
+        public static final int one_non_click=0x7f020024;
+        public static final int score=0x7f020025;
+        public static final int score_click=0x7f020026;
+        public static final int score_non_click=0x7f020027;
+        public static final int settings=0x7f020028;
+        public static final int settings_click=0x7f020029;
+        public static final int settings_non_click=0x7f02002a;
+        public static final int seven=0x7f02002b;
+        public static final int seven_click=0x7f02002c;
+        public static final int seven_non_click=0x7f02002d;
+        public static final int six=0x7f02002e;
+        public static final int six_click=0x7f02002f;
+        public static final int six_non_click=0x7f020030;
+        public static final int three=0x7f020031;
+        public static final int three_click=0x7f020032;
+        public static final int three_non_click=0x7f020033;
+        public static final int two=0x7f020034;
+        public static final int two_click=0x7f020035;
+        public static final int two_non_click=0x7f020036;
+        public static final int zero=0x7f020037;
+        public static final int zero_click=0x7f020038;
+        public static final int zero_non_click=0x7f020039;
     }
     public static final class id {
         public static final int TextView01=0x7f0a000a;
@@ -92,10 +94,10 @@ public final class R {
         public static final int TextView07=0x7f0a0038;
         public static final int TextView08=0x7f0a0039;
         public static final int TextView09=0x7f0a003a;
-        public static final int about=0x7f0a0005;
+        public static final int about=0x7f0a0004;
         public static final int about_text=0x7f0a0000;
         public static final int action_settings=0x7f0a004c;
-        public static final int add_game=0x7f0a0004;
+        public static final int add_game=0x7f0a0002;
         public static final int answer=0x7f0a0023;
         public static final int box1=0x7f0a002d;
         public static final int box2=0x7f0a0029;
@@ -104,7 +106,7 @@ public final class R {
         public static final int del=0x7f0a001a;
         public static final int eight=0x7f0a0016;
         public static final int enter=0x7f0a0026;
-        public static final int entry=0x7f0a0003;
+        public static final int entry=0x7f0a0005;
         public static final int five=0x7f0a0019;
         public static final int four=0x7f0a0017;
         public static final int game=0x7f0a002f;
@@ -134,7 +136,7 @@ public final class R {
         public static final int quit=0x7f0a0028;
         public static final int resume=0x7f0a0027;
         public static final int save=0x7f0a004b;
-        public static final int score=0x7f0a0002;
+        public static final int score=0x7f0a0003;
         public static final int score_menu=0x7f0a003e;
         public static final int score_text=0x7f0a003f;
         public static final int set_text=0x7f0a0011;

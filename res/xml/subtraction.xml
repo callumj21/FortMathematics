@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <subtraction>
 
-    <set>Set one</set>
+    <set>Sub Set One</set>
 
     <description>Easy</description>
 
@@ -11,7 +11,7 @@
     <answers>12,2,5,33,22,61,142,88,43,15</answers>
     
     
-    <set>Set two</set>
+    <set>Sub Set Two</set>
 
     <description>Easy</description>
 
@@ -20,7 +20,7 @@
 
     <answers>5,79,14,3,15,5,66,109,27,20</answers>
     
-    <set>Set three</set>
+    <set>Sub Set Three</set>
     
     <description>Easy</description>
     

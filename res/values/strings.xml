@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">FortMathematics</string>
+    <string name="app_name">Fort\nMathematics</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     
     <string-array name="pause_array">
 		<item>Resume Game</item>
 		<item>Return to menu</item>
+	</string-array>
+	
+    <string-array name="stop_array">
+		<item>Continue creating game</item>
+		<item>Stop creating game</item>
 	</string-array>
 
 </resources>

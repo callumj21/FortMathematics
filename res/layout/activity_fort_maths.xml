@@ -17,23 +17,6 @@
         android:src="@drawable/math_challenge" />
 
        <Button
-           android:id="@+id/score"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentRight="true"
-           android:layout_below="@+id/imageView1"
-           android:layout_marginTop="84dp"
-           android:background="@drawable/score" />
-
-       <Button
-           android:id="@+id/entry"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_centerVertical="true"
-           android:layout_toLeftOf="@+id/score"
-           android:background="@drawable/entry" />
-
-       <Button
            android:id="@+id/add_game"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
@@ -48,5 +31,22 @@
            android:layout_below="@+id/add_game"
            android:layout_toRightOf="@+id/add_game"
            android:background="@drawable/about" />
+
+       <Button
+           android:id="@+id/entry"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerVertical="true"
+           android:layout_toLeftOf="@+id/score"
+           android:background="@drawable/entry" />
+
+       <Button
+           android:id="@+id/score"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_below="@+id/entry"
+           android:layout_marginRight="17dp"
+           android:background="@drawable/score" />
 
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.example.fortmathematics;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.widget.TextView;
 
 public class PlayerResults extends Activity{
@@ -36,6 +37,7 @@ public class PlayerResults extends Activity{
 		correctQuestions = (TextView) findViewById(R.id.questions);
 		
 		title = (TextView) findViewById(R.id.game);
+		title.setGravity(Gravity.CENTER);
 		
 		times = (TextView) findViewById(R.id.times);
 		
@@ -113,7 +115,7 @@ public class PlayerResults extends Activity{
             playerScore.setText(score.getString(score 
                     .getColumnIndexOrThrow(ScoreDbAdapter.KEY_SCORE))); 
             correctQuestions.setText(cQuestions);
-            title.setText(type + ":" + set);
+            title.setText(set);
             times.setText(cTimes);
             wrongQuestions.setText(wQuestions);
             wrongTimes.setText(wTimes);

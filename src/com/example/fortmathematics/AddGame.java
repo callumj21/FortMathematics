@@ -2,7 +2,10 @@ package com.example.fortmathematics;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -22,23 +25,33 @@ public class AddGame extends Activity{
 	private static int numQuestions;
 	private static String name;
 	private static String gameType;
+	private static int number;
+	
+	private static boolean resumeHasRun = false;
 	
 	private EditText gameName;
 
 	private Button contB;
+	
+	private SharedPreferences sharedPreferences;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_game);
-
+	
 	
 		spinner1 = (Spinner) findViewById(R.id.spinner1);
 		spinner2 = (Spinner) findViewById(R.id.spinner2);
 		spinner3 = (Spinner) findViewById(R.id.spinner3);
 		
 		gameName = (EditText) findViewById(R.id.game_name);
-		gameName.setText("New Set");
+		number = LoadInt();
+		gameName.setText("New Set " + number);
+		gameName.setKeyListener(null);
+		gameName.setFocusable(false);
+		gameName.setGravity(Gravity.CENTER);
 
 		
 		contB = (Button) findViewById(R.id.input_button);
@@ -50,6 +63,7 @@ public class AddGame extends Activity{
 				
 				Intent i = new Intent(AddGame.this, InputQuestions.class);
 				startActivity(i);
+				finish();
 			}
 
 		});
@@ -82,6 +96,23 @@ public class AddGame extends Activity{
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				gameType = spinner1.getSelectedItem().toString();
+				
+				if(gameType.equals("Addition")){
+					gameName.setText("New Set(Addition) " + number);
+
+				} else if(gameType.equals("Subtraction")){
+					gameName.setText("New Set(Subtraction) " + number);
+
+				}  else if(gameType.equals("Multiplication")){
+					gameName.setText("New Set(Multiplication) " + number);
+
+				} else if(gameType.equals("Division")){
+					gameName.setText("New Set(Division) " + number);
+
+				} else if(gameType.equals("Mixup")){
+					gameName.setText("New Set(Mixup) " + number);
+
+				}
 
 
 			}
@@ -144,12 +175,25 @@ public class AddGame extends Activity{
 		return difficulty;
 	}
 	
-	public static String getName() {
+	static String getName() {
 		return name;
 	}
 	
 	public static int getNumber() {
 		return numQuestions;
+	}
+	
+
+	public int LoadInt(){
+	    sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+	    return sharedPreferences.getInt("key", 1);
+	}
+
+	
+	
+	
+	public static void setNumber(int num){
+		number = num;
 	}
 
 }

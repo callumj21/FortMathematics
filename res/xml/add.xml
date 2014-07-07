@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <add>
 
-    <set>Set one</set>
+    <set>Add Set One</set>
 
     <description>Easy</description>
 
@@ -10,7 +10,7 @@
 
     <answers>37,28,51,54,66,37,34,120,141,79</answers>
 
-    <set>Set two</set>
+    <set>Add Set Two</set>
 
     <description>Easy</description>
 
@@ -18,14 +18,5 @@
 
     <answers>55,88,38,39,31,76,70,101,57,41</answers>
     
-    <set>Set three</set>
-
-    <description>Easy</description>
-
-    <questions>1.5+2.2,129 + 21,3.4 + 2.2, (1.5+1.5) + 0.9, (6 + 6) + 13, 56 + 23, 21 + 24,35 + 53,(16 + 9) + 25
-        ,21 + 66, 33 + 22, 1.1 + 0.4, 22 + 71, (8 + 12) + 66, 1.2 + 4.1
-         </questions>
-
-    <answers>3.7,150,5.6,3.9,25,79,45,88,50,87,55,1.5,93,86,5.3</answers>
-
+    
 </add>

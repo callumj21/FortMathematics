@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class ScoreDbHelper  extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "applicationdata1";
-	private static final int DATABASE_VERSION = 5;
+	private static final int DATABASE_VERSION = 7;
 	public static int scoreTableCreation = 0;
 
 	// Database creation sql statement for the add table

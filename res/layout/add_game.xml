@@ -81,15 +81,12 @@
 
      <EditText
          android:id="@+id/game_name"
-         android:layout_width="120dp"
+         android:layout_width="200dp"
          android:layout_height="wrap_content"
          android:layout_alignBaseline="@+id/textView4"
          android:layout_alignBottom="@+id/textView4"
-         android:layout_alignRight="@+id/textView1"
-         android:ems="10" >
-
-         <requestFocus />
-     </EditText>
+         android:layout_alignLeft="@+id/input_button"
+         android:ems="10" />
 
 </RelativeLayout>
 

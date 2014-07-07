@@ -48,7 +48,7 @@ public class ScoresList extends ListActivity {
 		db = help.getWritableDatabase();
 		cursor = db.rawQuery("SELECT * FROM score WHERE type = '"
 				+ ScoreSelectionMenu.getType() + "' AND g_set = '"
-				+ ScoreSelectionMenu.getSet() + "' ORDER BY g_score DESC", null);
+				+ ScoreSelectionMenu.getSet() + "' ORDER BY COALESCE(g_score,total_time) DESC", null);
 
 		startManagingCursor(cursor);
 

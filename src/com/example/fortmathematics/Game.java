@@ -7,10 +7,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -81,6 +81,7 @@ public class Game extends Activity {
 		answerBox = (EditText) findViewById(R.id.answer);
 		answerBox.setKeyListener(null);
 		answerBox.setFocusable(false);
+		answerBox.setTypeface(null, Typeface.BOLD);
 
 		zero = (Button) findViewById(R.id.zero);
 		zero.setOnClickListener(new OnClickListener() {
@@ -393,7 +394,7 @@ public class Game extends Activity {
 	private void enterFunction() {
 		float actualAnswer;
 		float userAnswer;
-		if (answer.length() == 0 || dotCount > 1) {
+		if (answer.length() == 0 || dotCount > 1 || (answer.length() ==1 && dotCount == 1)) {
 			actualAnswer = Float.parseFloat(answersList.get(current));
 			userAnswer = Float.MAX_VALUE;
 			userAnswers.add("no answer");

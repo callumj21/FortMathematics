@@ -7,13 +7,13 @@ import android.util.Log;
 
 public class GameDbHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "applicationdata";
-	private static final int DATABASE_VERSION = 4;
+	private static final int DATABASE_VERSION = 11;
 	public static int gameTableCreation = 0;
 
 	// Database creation sql statement for the add table
 	private static final String GAME_CREATE = "create table game (_id integer primary key autoincrement, "
 			+ "type text not null, g_set text not null, " +
-			"description text not null, questions text not null, answers text not null);";;
+			"description text not null, questions text not null, answers text not null, Unique(type,g_set) on conflict replace);";;
 
 	public GameDbHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
