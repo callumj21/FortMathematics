@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -50,8 +51,10 @@ public class InputQuestions extends Activity {
 
 		one = (EditText) findViewById(R.id.box1);
 		two = (EditText) findViewById(R.id.box2);
-		// one.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
-		// two.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+		one.setGravity(Gravity.CENTER);
+		two.setGravity(Gravity.CENTER);
+
+		
 
 		input = (Button) findViewById(R.id.input);
 

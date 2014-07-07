@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -82,6 +83,7 @@ public class Game extends Activity {
 		answerBox.setKeyListener(null);
 		answerBox.setFocusable(false);
 		answerBox.setTypeface(null, Typeface.BOLD);
+		answerBox.setGravity(Gravity.CENTER);
 
 		zero = (Button) findViewById(R.id.zero);
 		zero.setOnClickListener(new OnClickListener() {
